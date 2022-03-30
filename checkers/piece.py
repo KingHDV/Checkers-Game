@@ -1,5 +1,6 @@
+from pickle import TRUE
 import pygame
-from .constants import GREY, WHITE, SQUARE_SIZE
+from .constants import GREY, WHITE, SQUARE_SIZE, CROWN
 
 class Piece:
     PADDING = 15
@@ -38,6 +39,8 @@ class Piece:
         # draw two circles, the bigger one is the padding and the smaler one is on top
         pygame.draw.circle(win, GREY, (self.x, self.y), radius + self.OUTLINE)
         pygame.draw.circle(win, self.color, (self.x, self.y), radius)
+        if self.king:
+            win.blit(CROWN, (self.x - CROWN.get_width()//2, self.y - CROWN.get_height()//2))
 
     def __repr__(self):
         return str(self.color)
