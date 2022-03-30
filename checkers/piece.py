@@ -1,8 +1,8 @@
 import pygame
-from .constants import BLACK, GREY, WHITE, SQUARE_SIZE
+from .constants import GREY, WHITE, SQUARE_SIZE
 
 class Piece:
-    PADDING = 10
+    PADDING = 15
     OUTLINE = 2
 
     def __init__(self, row, col, color):
