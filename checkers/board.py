@@ -7,8 +7,8 @@ class Board:
     def __init__(self):
         self.board = []
         self.selected_piece = None
-        self.red_left = self.white_left = 12 # how many red and white pieces we have
-        self.red_kings = self.white_kings = 0 # how many king peaces each side has
+        self.red_left = self.white_left = 12 # how many red and white pieces we have, 12 each
+        self.red_kings = self.white_kings = 0 # how many king peaces each side has, at the start 0
 
     #definition to draw the board  
     def draw_squares(self, win):
