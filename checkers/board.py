@@ -24,7 +24,7 @@ class Board:
         piece.move(row, col)
 
         #make sure if the piece becomes a king when hitting the first or last row
-        if row == ROWS or row == 0:
+        if row == ROWS - 1 or row == 0:
             piece.make_king()
             if piece.color == WHITE:
                 self.white_kings += 1
@@ -137,6 +137,6 @@ class Board:
             else: #found a piece of the opponent where we might could jump over
                 last = [current]
 
-            right -= 1
+            right += 1
 
         return moves
