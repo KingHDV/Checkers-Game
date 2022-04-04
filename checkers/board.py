@@ -57,6 +57,10 @@ class Board:
                 if piece != 0:
                     piece.draw(win)
 
+    def remove(self, pieces):
+        for piece in pieces:
+            self.board[piece.row][piece.col] = 0
+
     def get_valid_moves(self, piece):
         # store of an dictionary, for the keys
         moves = {}

@@ -33,20 +33,23 @@ class Game:
                 self.selected = None # selected is reset and select will be re-called until the result move is valid
                 self.select(row, col)
 
-        else:
-            piece = self.board.get_piece(row, col)
-            # if the selection was valid, return true, else return false
-            if piece != 0 and piece.color == self.turn:
-                self.selected = piece
-                self.valid_moves = self.board.get_valid_moves(piece)
-                return True
-            return False
+        piece = self.board.get_piece(row, col)
+        # if the selection was valid, return true, else return false
+        if piece != 0 and piece.color == self.turn:
+            self.selected = piece
+            self.valid_moves = self.board.get_valid_moves(piece)
+            return True
+
+        return False
     
     def _move(self, row, col):
         piece = self.board.get_piece(row, col)
         if self.selected and piece == 0 and (row, col) in self.valid_moves:
             # move the piece
             self.board.move(self.selected, row, col)
+            skipped = self.valid_moves[(row, col)]
+            if skipped:
+                self.board.remove(skipped)
             self.change_turn()
         else:
             return False
@@ -59,6 +62,7 @@ class Game:
             pygame.draw.circle(self.win, BLUE, (col * SQUARE_SIZE + SQUARE_SIZE//2, row * SQUARE_SIZE + SQUARE_SIZE//2), 15)
 
     def change_turn(self):
+        self.valid_moves= {}
         if self.turn == RED:
             self.turn = WHITE
         else:
