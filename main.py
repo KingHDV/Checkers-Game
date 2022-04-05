@@ -1,4 +1,5 @@
 import pygame
+from checkers import board
 from checkers.constants import SQUARE_SIZE, WIDTH, HEIGHT, RED
 from checkers.game import Game
 
@@ -20,6 +21,10 @@ def main():
 
     while run:
         clock.tick(FPS)
+
+        if game.winner() != None:
+            print(game.winner()) #Returns the RGB-Code of the Winner, for example for RED the value - (255, 0, 0)
+            run = False
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

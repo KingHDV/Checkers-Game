@@ -60,6 +60,22 @@ class Board:
     def remove(self, pieces):
         for piece in pieces:
             self.board[piece.row][piece.col] = 0
+            if piece != 0:
+                if piece.color == RED:
+                    self.red_left -= 1
+                    print('RED -1')
+                    print(self.red_left)
+                else:
+                    self.white_left -= 1
+                    print('White -1')
+                    print(self.white_left)
+
+    def winner(self):
+        if self.red_left <= 0:
+            return WHITE
+        elif self.white_left <= 0:
+            return RED          
+        return None
 
     def get_valid_moves(self, piece):
         # store of an dictionary, for the keys
